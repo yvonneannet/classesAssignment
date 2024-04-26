@@ -36,10 +36,10 @@ class Rental {
 }
 
 
-let myCar = new Car("Toyota", "Camry", 2020, true);
+let myCar = new Car("Ford", "Mustang", 2018, true);
 
 
-let myRental = new Rental(myCar, "John Doe", '2024-04-01', '2024-04-10');
+let myRental = new Rental(myCar, "Vennie", '2024-11-05', '2024-02-20');
 
 console.log("Rental Duration:", myRental.calculateRentalDuration(), "days");
 
@@ -58,55 +58,56 @@ console.log("Car Available:", myCar.isAvailable);
 // ● addQuestion: Takes a Question object as a parameter and adds it to the questions array. 
 // ● nextQuestion: Advances to the next question in the quiz by incrementing the currentQuestionIndex. 
 // ● submitAnswer: Takes a user's answer as a parameter, checks if the answer is correct using the checkAnswer method of the Question class, and updates the score if the answer is correct.
-
-
-
-
-class Question {
-    constructor(text, options, correctAnswer) {
-        this.text = text;
-        this.options = options;
-        this.correctAnswer = correctAnswer;
-    }
-
-    checkAnswer(userAnswer) {
-        return userAnswer === this.correctAnswer;
-    }
-}
-
-class Quiz {
-    constructor() {
+ 
+        
+        const question1 = new Question(
+        "Who is Africa's biggest artist?",
+        ["What is 10 * 10?"],
+        "Burna Boy"
+        );
+        
+        
+        const userAnswer = "Burna Boy";
+        console.log(question1.checkAnswer(userAnswer)); 
+        
+        
+        
+       
+       
+       
+       // Create a Quiz class with the following properties: 
+       // ● questions(array):An array of Question objects. 
+       // ● currentQuestionIndex(number): The index of the current question in the questions array. 
+       // ● score(number): The user’s current score. 
+       // The Quiz class should have the following methods: 
+       // ● addQuestion: Takes a Question object as a parameter and adds it to the questions array. 
+       // ● nextQuestion: Advances to the next question in the quiz by incrementing the currentQuestionIndex. 
+       // ● submitAnswer: Takes a user's answer as a parameter, checks if the answer is correct using the checkAnswer method of the Question class, and updates the score if the answer is correct.
+       
+       
+    
+       
+       class Quiz {
+        constructor() {
         this.questions = [];
         this.currentQuestionIndex = 0;
         this.score = 0;
-    }
-
-    addQuestion(question) {
+        }
+        
+        addQuestion(question) {
         this.questions.push(question);
-    }
-
-    nextQuestion() {
+        }
+        
+        nextQuestion() {
         this.currentQuestionIndex++;
-    }
-
-    submitAnswer(answer) {
+        }
+        
+        submitAnswer(userAnswer) {
         const currentQuestion = this.questions[this.currentQuestionIndex];
-        if (currentQuestion.checkAnswer(answer)) {
-            this.score++;
-            
-
+        if (currentQuestion.checkAnswer(userAnswer)) {
+        this.score++;
         }
         this.nextQuestion();
-    }
-}
-
-
-const quiz = new Quiz();
-quiz.addQuestion(new Question("Who is Africa's biggest artist?", ["Awilo Logomba", "Tiwa Savage", "Davido", "Burna Boy","Johnny Drille"], "Burna Boy"));
-quiz.addQuestion(new Question("What is 10 * 10?", ["10", "20", "30", "40"], "50"));
-quiz.addQuestion(new Question("Who is the current president of Uganda?", ["Idi Amin", "Milton Obote", "Kaguta Museveni"], "Kaguta Museveni"));
-
-quiz.submitAnswer("Burna Boy"); 
-       quiz.submitAnswer("100");     
-       quiz.submitAnswer("Kaguta Museveni"); 
-
+        }
+        }
+       
